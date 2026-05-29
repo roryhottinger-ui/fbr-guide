@@ -5,11 +5,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AlertBanner } from '@/components/AlertBanner';
 import { BlockerBanner } from '@/components/BlockerBanner';
+import { Button } from '@/components/Button';
 import { ChainVisualiser } from '@/components/ChainVisualiser';
 import { ChecklistItem } from '@/components/ChecklistItem';
 import { SectionHeader } from '@/components/SectionHeader';
 import { coerceAnswers } from '@/content/checklistQuestions';
 import { buildChecklist, checklistProgress } from '@/engine/checklist';
+import { scheduleStatusReminder } from '@/lib/notifications';
 import { useAppStore } from '@/store/useAppStore';
 import { colors, radius, spacing, typography } from '@/theme/theme';
 import type { ChecklistItem as Item, ChecklistSection } from '@/types';
@@ -33,8 +35,16 @@ export default function ChecklistScreen() {
   const rawAnswers = useAppStore((s) => s.checklistAnswers);
   const checked = useAppStore((s) => s.checked);
   const toggleChecked = useAppStore((s) => s.toggleChecked);
+  const submittedDate = useAppStore((s) => s.submittedDate);
+  const setSubmittedDate = useAppStore((s) => s.setSubmittedDate);
 
   const [showChain, setShowChain] = useState(true);
+
+  const markSubmitted = async () => {
+    const iso = new Date().toISOString();
+    setSubmittedDate(iso);
+    await scheduleStatusReminder(iso);
+  };
 
   const answers = useMemo(() => coerceAnswers(rawAnswers), [rawAnswers]);
   const { items, alerts } = useMemo(() => buildChecklist(route, answers), [route, answers]);
@@ -139,6 +149,15 @@ export default function ChecklistScreen() {
           <Text style={styles.doneText}>
             Send via recorded post to the FBR PO Box in Balbriggan, Co. Dublin. Include the Eircode K32 AE72 on the envelope.
           </Text>
+          <View style={styles.doneAction}>
+            {submittedDate ? (
+              <Text style={styles.doneReminder}>
+                ✓ Reminder set — we'll nudge you to check your status around the 9-month mark.
+              </Text>
+            ) : (
+              <Button label="I've posted it — remind me to check status" variant="secondary" onPress={markSubmitted} />
+            )}
+          </View>
         </View>
       ) : null}
 
@@ -207,5 +226,7 @@ const styles = StyleSheet.create({
   doneEmoji: { fontSize: 30, marginBottom: spacing.sm },
   doneTitle: { fontFamily: typography.h2.fontFamily, fontSize: 18, fontWeight: '700', color: colors.white, marginBottom: 6 },
   doneText: { fontSize: 12, lineHeight: 18, color: 'rgba(255,255,255,0.85)', textAlign: 'center' },
+  doneAction: { marginTop: spacing.lg, width: '100%' },
+  doneReminder: { fontSize: 12, lineHeight: 18, color: colors.white, textAlign: 'center', fontWeight: '600' },
   footer: { fontSize: 11, color: colors.textLight, textAlign: 'center', marginTop: spacing.xl },
 });
