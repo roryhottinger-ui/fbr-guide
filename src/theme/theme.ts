@@ -51,12 +51,21 @@ export const radius = {
 } as const;
 
 /**
- * Font families. Headings use a serif (mockup uses Palatino; we load Lora as a
- * close free equivalent). Body uses the platform system sans-serif.
+ * Font families. Headings use a platform serif close to the mockup's Palatino.
+ * Body uses the platform system sans-serif. Using platform fonts keeps the app
+ * fully offline with no font-loading step.
  */
+import { Platform } from 'react-native';
+
+const serif = Platform.select({
+  ios: 'Palatino',
+  android: 'serif',
+  default: 'Georgia, "Times New Roman", serif',
+}) as string;
+
 export const fonts = {
-  serif: 'Lora_700Bold',
-  serifRegular: 'Lora_400Regular',
+  serif,
+  serifRegular: serif,
   // `undefined` lets RN fall back to the platform system sans-serif.
   sans: undefined as string | undefined,
 } as const;

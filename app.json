@@ -1,18 +1,21 @@
 {
   "expo": {
-    "name": "fbr-scaffold",
-    "slug": "fbr-scaffold",
+    "name": "FBR Guide",
+    "slug": "fbr-guide",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "fbrscaffold",
-    "userInterfaceStyle": "automatic",
+    "scheme": "fbrguide",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F5F2EB",
+    "primaryColor": "#1B5E38",
     "ios": {
+      "supportsTablet": true,
       "icon": "./assets/expo.icon"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#1B5E38",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -21,23 +24,28 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "FBR Guide",
+      "shortName": "FBR Guide",
+      "themeColor": "#1B5E38",
+      "backgroundColor": "#F5F2EB",
+      "display": "standalone"
     },
     "plugins": [
       "expo-router",
+      "expo-updates",
+      "expo-notifications",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
-          }
+          "backgroundColor": "#1B5E38",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
         }
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
+      "typedRoutes": false,
       "reactCompiler": true
     }
   }
