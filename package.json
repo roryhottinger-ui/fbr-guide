@@ -1,5 +1,5 @@
 {
-  "name": "fbr-scaffold",
+  "name": "fbr-guide",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
@@ -45,7 +45,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "typecheck": "tsc --noEmit"
   },
   "private": true
 }
