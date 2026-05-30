@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
+import { footer } from '@/content/legal';
 import { getInfoArticle } from '@/content/infoArticles';
 import { openExternal } from '@/lib/external';
 import { colors, radius, spacing, typography } from '@/theme/theme';
@@ -46,7 +47,7 @@ export default function InfoArticleScreen() {
         </View>
       ) : null}
 
-      <Text style={styles.footer}>Not legal advice · Verify current requirements at ireland.ie</Text>
+      <Text style={styles.footer}>{footer.notAdvice}</Text>
     </ScrollView>
   );
 }

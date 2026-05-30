@@ -53,6 +53,10 @@ export default function InfoHub() {
           <Card key={a.id} id={a.id} title={a.title} summary={a.summary} />
         ))}
       </View>
+
+      <Pressable onPress={() => router.push('/legal')} style={styles.legalRow}>
+        <Text style={styles.legalText}>Privacy &amp; Terms · Disclaimer →</Text>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -73,6 +77,8 @@ const styles = StyleSheet.create({
   backArrow: { fontSize: 18, color: colors.textMid },
   headerTitle: { flex: 1 },
   group: { marginTop: spacing.sm, marginBottom: spacing.lg, gap: spacing.sm },
+  legalRow: { paddingVertical: spacing.md, alignItems: 'center' },
+  legalText: { fontSize: 13, color: colors.green, fontWeight: '600' },
   card: {
     backgroundColor: colors.card,
     borderWidth: 1,

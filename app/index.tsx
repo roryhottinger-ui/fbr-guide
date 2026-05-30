@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
 import { fees } from '@/content/fees';
+import { lastVerified, onboardingDisclaimer } from '@/content/legal';
 import { timelines } from '@/content/timelines';
 import { useAppStore } from '@/store/useAppStore';
 import { colors, radius, spacing, typography } from '@/theme/theme';
@@ -61,13 +62,14 @@ export default function Home() {
               <Text style={styles.statLabel}>typical wait</Text>
             </View>
           </View>
+          <Text style={styles.heroVerified}>Information last verified {lastVerified}</Text>
         </View>
 
         {/* Resume banner */}
         {(isEligible || inProgress) && (
           <View style={styles.resume}>
             <Text style={styles.resumeText}>
-              {isEligible ? 'You’re eligible — pick up where you left off.' : 'You have an eligibility check in progress.'}
+              {isEligible ? 'You’re likely eligible — pick up where you left off.' : 'You have an eligibility check in progress.'}
             </Text>
             <Button
               label={isEligible ? 'Resume my checklist →' : 'Resume eligibility check →'}
@@ -101,8 +103,11 @@ export default function Home() {
         </View>
 
         <Text style={styles.footer}>
-          Not legal advice. All your answers stay on this device — no account, no data collected. Works fully offline.
+          Independent &amp; unofficial — not affiliated with the Irish Government or DFA. Not legal advice. All your answers stay on this device — no account, no data collected. Works fully offline.
         </Text>
+        <Pressable onPress={() => router.push('/legal')} hitSlop={8}>
+          <Text style={styles.footerLink}>Privacy &amp; Terms</Text>
+        </Pressable>
       </ScrollView>
 
       {/* First-run disclaimer */}
@@ -110,13 +115,13 @@ export default function Home() {
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Before you start</Text>
-            <Text style={styles.modalText}>
-              This app is an informational guide compiled from official DFA guidance and community experience. It is not legal advice.
-            </Text>
-            <Text style={styles.modalText}>
-              Always verify current requirements at ireland.ie. Your answers are stored only on this device — nothing is collected or sent anywhere.
-            </Text>
+            {onboardingDisclaimer.map((p, i) => (
+              <Text key={i} style={styles.modalText}>{p}</Text>
+            ))}
             <Button label="I understand — continue" onPress={acceptDisclaimer} />
+            <Pressable onPress={() => { acceptDisclaimer(); router.push('/legal'); }} hitSlop={8}>
+              <Text style={styles.modalLink}>Read full Privacy &amp; Terms</Text>
+            </Pressable>
           </View>
         </View>
       </Modal>
@@ -141,6 +146,7 @@ const styles = StyleSheet.create({
   statValue: { color: colors.white, fontSize: 18, fontWeight: '700' },
   statLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 11, marginTop: 2 },
   statDivider: { width: 1, height: 28, backgroundColor: 'rgba(255,255,255,0.25)' },
+  heroVerified: { color: 'rgba(255,255,255,0.55)', fontSize: 10, marginTop: spacing.md },
   resume: {
     backgroundColor: colors.greenLight,
     borderWidth: 1.5,
@@ -158,8 +164,10 @@ const styles = StyleSheet.create({
   stepText: { fontSize: 13, lineHeight: 19, color: colors.textMid, marginTop: 2 },
   ctas: { gap: spacing.sm, marginBottom: spacing.xl },
   footer: { fontSize: 11, lineHeight: 16, color: colors.textLight, textAlign: 'center' },
+  footerLink: { fontSize: 12, color: colors.green, fontWeight: '600', textAlign: 'center', marginTop: spacing.sm },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', padding: spacing.xl },
   modalCard: { backgroundColor: colors.card, borderRadius: radius.xxl, padding: spacing.xl, gap: spacing.md },
   modalTitle: { fontFamily: typography.h2.fontFamily, fontSize: 21, fontWeight: '700', color: colors.text },
   modalText: { fontSize: 13, lineHeight: 20, color: colors.textMid },
+  modalLink: { fontSize: 12, color: colors.green, fontWeight: '600', textAlign: 'center' },
 });

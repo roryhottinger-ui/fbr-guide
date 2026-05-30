@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
 import { getDocument } from '@/content/documents';
+import { footer } from '@/content/legal';
 import { COUNTRY_LABELS, getHowToLink } from '@/content/links';
 import { openExternal } from '@/lib/external';
 import { colors, radius, spacing, typography } from '@/theme/theme';
@@ -74,7 +75,7 @@ export default function DocumentDetail() {
       <Bullets title="Critical rules" items={def.criticalRules} />
       <Bullets title="Common pitfalls" items={def.commonPitfalls} />
 
-      <Text style={styles.footer}>Not legal advice · Verify current requirements at ireland.ie</Text>
+      <Text style={styles.footer}>{footer.notAdvice}</Text>
     </ScrollView>
   );
 }

@@ -8,7 +8,7 @@ Built with Expo (SDK 56), TypeScript, Expo Router, and Zustand. iOS, Android, an
 - **Offline-first.** Everything works with no connection; external gov/registry links open in the browser.
 - **OTA-updatable content.** All FBR rules, fees, timelines, and document data live in `src/content/` so they can be pushed via Expo Updates without an app-store release.
 
-> ⚠️ **Not legal advice.** This is an informational guide compiled from official DFA guidance, Citizens Information, and community experience. Always verify current requirements at [ireland.ie](https://www.ireland.ie/en/dfa/citizenship/born-abroad/registering-a-foreign-birth/).
+> ⚠️ **Independent & unofficial. Not legal advice.** FBR Guide is not affiliated with, endorsed by, or connected to the Irish Government, the DFA, or any official body. It is an informational guide compiled from official DFA guidance, Citizens Information, and community experience. Eligibility results are automated guidance, not decisions — only the DFA can confirm whether you qualify. Always verify current requirements at [ireland.ie](https://www.ireland.ie/en/dfa/citizenship/born-abroad/registering-a-foreign-birth/). Full Privacy & Terms are in the app and in `src/content/legal.ts`.
 
 ---
 

@@ -10,6 +10,7 @@ import { ChainVisualiser } from '@/components/ChainVisualiser';
 import { ChecklistItem } from '@/components/ChecklistItem';
 import { SectionHeader } from '@/components/SectionHeader';
 import { coerceAnswers } from '@/content/checklistQuestions';
+import { footer } from '@/content/legal';
 import { buildChecklist, checklistProgress } from '@/engine/checklist';
 import { scheduleStatusReminder } from '@/lib/notifications';
 import { useAppStore } from '@/store/useAppStore';
@@ -161,7 +162,7 @@ export default function ChecklistScreen() {
         </View>
       ) : null}
 
-      <Text style={styles.footer}>Not legal advice · Verify current requirements at ireland.ie</Text>
+      <Text style={styles.footer}>{footer.notAdvice}</Text>
     </ScrollView>
   );
 }

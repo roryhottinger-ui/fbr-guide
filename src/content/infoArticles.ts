@@ -149,12 +149,13 @@ export const infoArticles: InfoArticle[] = [
   },
   {
     id: 'disclaimer',
-    title: 'Not legal advice',
-    summary: 'This app is an informational guide only.',
+    title: 'Disclaimer, privacy & terms',
+    summary: 'Independent & unofficial · not legal advice · your data stays on your device.',
     body: [
-      'This app is an informational guide compiled from official DFA guidance, Citizens Information, and community experience. It is not legal advice.',
-      'Always verify current requirements at ireland.ie and consult a qualified Irish immigration solicitor for your specific situation. Requirements and fees can change.',
-      'This app stores all your answers locally on your device. No personal data is collected or sent anywhere.',
+      'FBR Guide is an independent, unofficial guide. It is not affiliated with, endorsed by, or connected to the Irish Government, the DFA, or any official body.',
+      'It is provided for general information only and is not legal or immigration advice. Eligibility results are automated guidance, not decisions — only the DFA can confirm whether you qualify.',
+      'FBR rules, fees, and processing times change. Always verify current requirements at ireland.ie and consult a qualified solicitor or regulated immigration adviser for your situation.',
+      'Your answers are stored only on this device. No personal data is collected or sent anywhere. See the full Privacy & Terms in the app for liability and privacy details.',
     ],
     links: [
       {
